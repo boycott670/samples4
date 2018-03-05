@@ -46,4 +46,10 @@ public final class CalculatorTest
 	{
 		assertEquals("235", calculator.eval("2 + 233"));
 	}
+	
+	@Test(expected = UnsupportedOperationException.class)
+	public void test_plus_operator_3 ()
+	{
+		output = calculator.eval("2 + 233 + 1");
+	}
 }
