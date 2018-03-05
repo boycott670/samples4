@@ -1,6 +1,7 @@
 package samples;
 
-import org.junit.After;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -28,15 +29,21 @@ public final class CalculatorTest
 		output = calculator.eval("");
 	}
 	
-	@Test(expected = UnsupportedOperationException.class)
+	@Ignore
 	public void test_not_supported ()
 	{
 		output = calculator.eval("2");		
 	}
-	
-	@After
-	public void post_test ()
+
+	@Test
+	public void test_plus_operator ()
 	{
-		
+		assertEquals("4", calculator.eval("2 +2"));
+	}
+	
+	@Test
+	public void test_plus_operator_2 ()
+	{
+		assertEquals("235", calculator.eval("2 + 233"));
 	}
 }
