@@ -52,4 +52,22 @@ public final class CalculatorTest
 	{
 		output = calculator.eval("2 + 233 + 1");
 	}
+	
+	@Test
+	public void test_minus_operator ()
+	{
+		assertEquals("0", calculator.eval("2-2"));
+	}
+	
+	@Test
+	public void test_minus_operator_2 ()
+	{
+		assertEquals("-2", calculator.eval("0-2"));
+	}
+	
+	@Test(expected = UnsupportedOperationException.class)
+	public void test_minus_operator_3 ()
+	{
+		calculator.eval("2-2-");
+	}
 }
