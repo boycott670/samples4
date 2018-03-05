@@ -1,28 +1,28 @@
-package samples;
-
 import java.util.Arrays;
 
-public final class Calculator extends Object
-{
-	public final String eval (final String input)
-	{
-		if (input == null || input.isEmpty())
-		{
-			return "";
-		}
-		
-		if (input.contains("+") && !input.substring(input.indexOf('+') + 1).contains("+"))
-		{
-			return String.valueOf(Arrays.stream(input.split("\\+")).map(String::trim).mapToInt(Integer::valueOf).sum());
-		}
+import samples.exceptions.InvalidInputException;
 
-		if (input.contains("-") && !input.substring(input.indexOf("-") + 1).contains("-"))
+public final class Calculator {
+
+	public final String add (final String input, final String separator)
+	{
+		
+		try
 		{
-			final int[] operands = Arrays.stream(input.split("\\-")).map(String::trim).mapToInt(Integer::valueOf).toArray();
-			
-			return String.valueOf(operands[0] - operands[1]);
+			return input == null || input.isEmpty() ? "" : String.valueOf(Arrays.stream(input.split(separator)).map(String::trim).mapToInt(Integer::valueOf).sum());
+		}
+		catch (final NumberFormatException numberFormatException)
+		{
+			throw new InvalidInputException();
 		}
 		
-		throw new UnsupportedOperationException("Not yet implemented !");
 	}
+	
+	public final String add (final String input)
+	{
+		
+		return add(input, ",");
+		
+	}
+	
 }
